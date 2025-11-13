@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>📈 期权信号分析</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 30px auto; padding: 20px; background: #fafafa; }
+        h1 { color: #1a5fb4; text-align: center; }
+        input { width: 100%; padding: 14px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; box-sizing: border-box; }
+        button { width: 100%; background: #1a5fb4; color: white; border: none; padding: 14px; font-size: 18px; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #134a9e; }
+        .result { margin-top: 20px; padding: 16px; border-radius: 8px; text-align: center; }
+        .success { background: #d7f4e4; color: #0a6f3c; }
+        .error { background: #ffeaea; color: #c00; }
+        a { color: #1a5fb4; text-decoration: underline; font-weight: bold; }
+        small { display: block; margin-top: 30px; color: #666; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <h1>📊 期权持仓信号分析</h1>
+
+    <form method="POST">
+        <input name="symbols" placeholder="输入美股代码，如：NVDA,AAPL,TSLA" autofocus required>
+        <button type="submit">🚀 立即生成报告</button>
+    </form>
+
+    {% if error %}
+        <div class="result error">❌ {{ error }}</div>
+    {% elif success %}
+        <div class="result success">
+            ✅ 报告已生成！<br>
+            <a href="{{ download_url }}" download>📥 点击下载 Excel</a>
+        </div>
+    {% endif %}
+
+    <small>
+        • 数据来自 Finnhub（免费 API）<br>
+        • 报告包含：期权链、关键行权价、潜在看多信号<br>
+        • 首次加载可能稍慢（正在拉取数据）<br>
+        • 请勿高频请求（避免 API 限流）
+    </small>
+</body>
+</html>
