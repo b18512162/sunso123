@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+temp_reports/
+.env
+.DS_Store
